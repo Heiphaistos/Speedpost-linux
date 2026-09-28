@@ -1,0 +1,87 @@
+{
+  "name": "speedpost-linux",
+  "productName": "SpeedPost",
+  "version": "1.0.0",
+  "description": "SpeedPost pour Linux : envoi de fichiers chiffré par simple lien",
+  "main": "main.cjs",
+  "private": true,
+  "license": "MIT",
+  "author": {
+    "name": "Heiphaistos",
+    "email": "morganjoin@gmail.com"
+  },
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test test/*.test.mjs",
+    "check": "node --check main.cjs && node --check preload.cjs && node --check uploader.cjs && node --check renderer/renderer.js",
+    "dist": "electron-builder --linux AppImage deb --publish never"
+  },
+  "devDependencies": {
+    "electron": "^44.4.5",
+    "electron-builder": "^26.15.3"
+  },
+  "build": {
+    "appId": "fr.speedpost.app",
+    "productName": "SpeedPost",
+    "artifactName": "SpeedPost-${version}-${arch}.${ext}",
+    "files": [
+      "main.cjs",
+      "preload.cjs",
+      "uploader.cjs",
+      "renderer/**",
+      "build/icon.png"
+    ],
+    "directories": {
+      "buildResources": "build",
+      "output": "dist"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "category": "Network",
+      "icon": "build/icon.png",
+      "synopsis": "Envoi de fichiers chiffré par simple lien",
+      "executableName": "speedpost",
+      "mimeTypes": [
+        "application/octet-stream",
+        "application/pdf",
+        "application/zip",
+        "image/*",
+        "video/*",
+        "audio/*",
+        "text/plain"
+      ],
+      "desktop": {
+        "entry": {
+          "Name": "SpeedPost",
+          "Comment": "Envoyer des fichiers par un simple lien chiffré",
+          "Keywords": "transfert;envoi;fichier;partage;lien;"
+        }
+      }
+    },
+    "deb": {
+      "depends": [
+        "libnotify4",
+        "libxtst6",
+        "libnss3"
+      ]
+    }
+  },
+  "homepage": "https://github.com/Heiphaistos/SpeedPost-Linux",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Heiphaistos/SpeedPost-Linux.git"
+  }
+}
