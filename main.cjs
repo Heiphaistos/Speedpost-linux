@@ -6,7 +6,7 @@ const path = require('node:path');
 const { fileURLToPath } = require('node:url');
 const { sendFiles, deleteTransfer, getConfig } = require('./uploader.cjs');
 
-const DEFAULT_SERVER = process.env.SPEEDPOST_SERVER || 'https://speedpost.example.com';
+const DEFAULT_SERVER = process.env.SPEEDPOST_SERVER || 'https://speedpost.heiphaistos.org';
 let win = null; let tray = null; let current = null; let ready = false; const pending = [];
 
 const cfgFile = () => path.join(app.getPath('userData'), 'settings.json');
